@@ -2,6 +2,13 @@
 
 A stunning, premium iOS app built with **SwiftUI** to help SRM University students plan and track their exam preparation.
 
+<div align="center">
+  <!-- TODO: Add Simulator Screenshots here -->
+  <img src="https://via.placeholder.com/250x500.png?text=Home" width="200" alt="Home Screen"/>
+  <img src="https://via.placeholder.com/250x500.png?text=Planner" width="200" alt="Planner Screen"/>
+  <img src="https://via.placeholder.com/250x500.png?text=Habits" width="200" alt="Habits Screen"/>
+</div>
+
 ## ✨ Features
 
 ### 📱 5-Tab Navigation
@@ -73,7 +80,7 @@ SRMExamPlanner/
 
 ### Prerequisites
 - **Xcode 15+** (macOS Sonoma or later recommended)
-- **iOS 17+** deployment target
+- **iOS 16+** deployment target
 
 ### Setup
 1. Clone the repository
@@ -84,9 +91,9 @@ SRMExamPlanner/
 6. Build and run on simulator or device (⌘+R)
 
 ## 📋 Requirements
-- iOS 17.0+
+- iOS 16.0+
 - Xcode 15.0+
 - Swift 5.9+
 
 ## 📄 License
-This project is for educational purposes at SRM Institute of Science and Technology.
+This project is licensed under the [MIT License](LICENSE).
