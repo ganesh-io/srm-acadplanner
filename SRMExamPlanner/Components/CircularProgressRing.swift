@@ -42,7 +42,7 @@ struct CircularProgressRing: View {
                 animatedProgress = progress
             }
         }
-        .onChange(of: progress) { _, newValue in
+        .onChange(of: progress) { newValue in
             withAnimation(.easeInOut(duration: 0.6)) {
                 animatedProgress = newValue
             }

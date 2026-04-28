@@ -146,8 +146,15 @@ struct PlannerView: View {
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, 10)
                 .background(
-                    RoundedRectangle(cornerRadius: 12)
-                        .fill(isToday ? AnyShapeStyle(AppTheme.primaryGradient) : AnyShapeStyle(Color.clear))
+                    Group {
+                        if isToday {
+                            RoundedRectangle(cornerRadius: 12)
+                                .fill(AppTheme.primaryGradient)
+                        } else {
+                            RoundedRectangle(cornerRadius: 12)
+                                .fill(Color.clear)
+                        }
+                    }
                 )
             }
         }

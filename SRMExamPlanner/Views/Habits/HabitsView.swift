@@ -150,22 +150,23 @@ private struct HabitToggleRow: View {
                     
                     // Toggle checkmark
                     ZStack {
-                        RoundedRectangle(cornerRadius: 10)
-                            .fill(
-                                habit.isCompleted
-                                    ? AnyShapeStyle(LinearGradient(
+                        Group {
+                            if habit.isCompleted {
+                                RoundedRectangle(cornerRadius: 10)
+                                    .fill(LinearGradient(
                                         colors: [Color(hex: habit.color), Color(hex: habit.color).opacity(0.7)],
                                         startPoint: .topLeading, endPoint: .bottomTrailing))
-                                    : AnyShapeStyle(Color.white.opacity(0.06))
-                            )
-                            .frame(width: 36, height: 36)
-                            .overlay(
+                                    .frame(width: 36, height: 36)
+                            } else {
                                 RoundedRectangle(cornerRadius: 10)
-                                    .stroke(
-                                        habit.isCompleted ? Color.clear : Color.white.opacity(0.12),
-                                        lineWidth: 1.5
+                                    .fill(Color.white.opacity(0.06))
+                                    .frame(width: 36, height: 36)
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 10)
+                                            .stroke(Color.white.opacity(0.12), lineWidth: 1.5)
                                     )
-                            )
+                            }
+                        }
                         
                         if habit.isCompleted {
                             Image(systemName: "checkmark")
