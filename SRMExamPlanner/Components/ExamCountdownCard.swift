@@ -28,6 +28,7 @@ struct ExamCountdownCard: View {
                         .opacity(appearAnimation ? 1.0 : 0)
                 }
                 
+                // Countdown units
                 HStack(spacing: 0) {
                     CountdownUnit(value: countdown.days, label: "DAYS",
                                   gradient: AppTheme.primaryGradient)
@@ -40,6 +41,25 @@ struct ExamCountdownCard: View {
                     CountdownDivider()
                     CountdownUnit(value: countdown.seconds, label: "SEC",
                                   gradient: AppTheme.accentGradient)
+                }
+                
+                // Semester progress bar
+                VStack(spacing: 8) {
+                    HStack {
+                        Text("Semester Progress")
+                            .font(.caption)
+                            .foregroundColor(AppTheme.textTertiary)
+                        Spacer()
+                        Text("\(Int(DateHelper.semesterProgress * 100))%")
+                            .font(.caption)
+                            .fontWeight(.bold)
+                            .foregroundStyle(AppTheme.primaryGradient)
+                    }
+                    AnimatedProgressBar(
+                        progress: DateHelper.semesterProgress,
+                        height: 6,
+                        gradient: AppTheme.primaryGradient
+                    )
                 }
             }
         }

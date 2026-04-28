@@ -1,6 +1,20 @@
 import Foundation
 
 enum DateHelper {
+    // MARK: - Exam Date Configuration
+    
+    /// The first exam date — May 24, 2026
+    static var examDate: Date {
+        date(year: 2026, month: 5, day: 24)
+    }
+    
+    /// Semester start date for progress calculation
+    static var semesterStart: Date {
+        date(year: 2026, month: 1, day: 6)
+    }
+    
+    // MARK: - Date Construction
+    
     static func date(year: Int, month: Int, day: Int) -> Date {
         var components = DateComponents()
         components.year = year
@@ -10,9 +24,7 @@ enum DateHelper {
         return Calendar.current.date(from: components) ?? Date()
     }
     
-    static var examDate: Date {
-        date(year: 2026, month: 5, day: 24)
-    }
+    // MARK: - Countdown Calculations
     
     static var daysUntilExam: Int {
         let calendar = Calendar.current
@@ -32,6 +44,22 @@ enum DateHelper {
         )
     }
     
+    /// How far through the semester we are (0.0 to 1.0)
+    static var semesterProgress: Double {
+        let now = Date()
+        let totalInterval = examDate.timeIntervalSince(semesterStart)
+        let elapsedInterval = now.timeIntervalSince(semesterStart)
+        guard totalInterval > 0 else { return 1.0 }
+        return min(1.0, max(0.0, elapsedInterval / totalInterval))
+    }
+    
+    /// Weeks remaining until first exam
+    static var weeksRemaining: Int {
+        return max(0, daysUntilExam / 7)
+    }
+    
+    // MARK: - Utility
+    
     static func daysLeft(to date: Date) -> Int {
         let calendar = Calendar.current
         let now = calendar.startOfDay(for: Date())
@@ -42,6 +70,12 @@ enum DateHelper {
     static func formatShortDate(_ date: Date) -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "MMM d"
+        return formatter.string(from: date)
+    }
+    
+    static func formatFullDate(_ date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "EEEE, MMM d, yyyy"
         return formatter.string(from: date)
     }
 }
