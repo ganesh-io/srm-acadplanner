@@ -3,10 +3,10 @@
 A stunning, premium iOS app built with **SwiftUI** to help SRM University students plan and track their exam preparation.
 
 <div align="center">
-  <!-- TODO: Add Simulator Screenshots here -->
-  <img src="https://via.placeholder.com/250x500.png?text=Home" width="200" alt="Home Screen"/>
-  <img src="https://via.placeholder.com/250x500.png?text=Planner" width="200" alt="Planner Screen"/>
-  <img src="https://via.placeholder.com/250x500.png?text=Habits" width="200" alt="Habits Screen"/>
+  <!-- TODO: Replace these with actual Simulator Screenshots later -->
+  <img src="https://placehold.co/250x540/1A1733/FFFFFF/png?text=Home\nScreen" width="200" alt="Home Screen"/>
+  <img src="https://placehold.co/250x540/1A1733/FFFFFF/png?text=Planner\nScreen" width="200" alt="Planner Screen"/>
+  <img src="https://placehold.co/250x540/1A1733/FFFFFF/png?text=Habits\nScreen" width="200" alt="Habits Screen"/>
 </div>
 
 ## ✨ Features
