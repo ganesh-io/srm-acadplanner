@@ -105,7 +105,7 @@ struct ProfileView: View {
                 
                 // App branding
                 VStack(spacing: 6) {
-                    Text("SRM Exam Planner")
+                    Text("Studily")
                         .font(.caption)
                         .fontWeight(.bold)
                         .foregroundStyle(AppTheme.primaryGradient)

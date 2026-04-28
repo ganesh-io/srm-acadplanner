@@ -1,7 +1,7 @@
 import SwiftUI
 
 @main
-struct SRMExamPlannerApp: App {
+struct StudilyApp: App {
     @StateObject private var habitStore = HabitStore()
     
     var body: some Scene {

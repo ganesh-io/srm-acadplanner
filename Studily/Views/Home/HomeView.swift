@@ -42,7 +42,7 @@ struct HomeView: View {
                 Text("Good \(greetingTime) 👋")
                     .font(.subheadline)
                     .foregroundColor(AppTheme.textSecondary)
-                Text("SRM Planner")
+                Text("Studily")
                     .font(.system(size: 28, weight: .bold, design: .rounded))
                     .foregroundColor(AppTheme.textPrimary)
             }

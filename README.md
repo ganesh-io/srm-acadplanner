@@ -1,4 +1,4 @@
-# 🎓 SRM Exam Planner
+# 🎓 Studily
 
 A stunning, premium iOS app built with **SwiftUI** to help SRM University students plan and track their exam preparation.
 
@@ -42,8 +42,8 @@ A stunning, premium iOS app built with **SwiftUI** to help SRM University studen
 ## 📂 Project Structure
 
 ```
-SRMExamPlanner/
-├── SRMExamPlannerApp.swift          # App entry point
+Studily/
+├── StudilyApp.swift          # App entry point
 ├── Theme/
 │   └── AppTheme.swift               # Design system (colors, gradients, spacing)
 ├── Models/
@@ -84,7 +84,7 @@ SRMExamPlanner/
 ### Setup
 1. Clone the repository
 2. Open Xcode → **File → New → Project → iOS → App**
-3. Set Product Name to `SRMExamPlanner`
+3. Set Product Name to `Studily`
 4. Select **SwiftUI** for Interface, **Swift** for Language
 5. Replace the generated files with the source files from this repo
 6. Build and run on simulator or device (⌘+R)

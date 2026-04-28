@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A10001 /* SRMExamPlannerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10001; };
+		A10001 /* StudilyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10001; };
 		A10002 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10002; };
 		A10003 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10003; };
 		A10004 /* HabitStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10004; };
@@ -31,8 +31,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		C10001 /* SRMExamPlanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SRMExamPlanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		B10001 /* SRMExamPlannerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SRMExamPlannerApp.swift; sourceTree = "<group>"; };
+		C10001 /* Studily.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Studily.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B10001 /* StudilyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudilyApp.swift; sourceTree = "<group>"; };
 		B10002 /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
 		B10003 /* DateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
 		B10004 /* HabitStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitStore.swift; sourceTree = "<group>"; };
@@ -69,15 +69,15 @@
 		E10001 = {
 			isa = PBXGroup;
 			children = (
-				E10002 /* SRMExamPlanner */,
+				E10002 /* Studily */,
 				E10010 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		E10002 /* SRMExamPlanner */ = {
+		E10002 /* Studily */ = {
 			isa = PBXGroup;
 			children = (
-				B10001 /* SRMExamPlannerApp.swift */,
+				B10001 /* StudilyApp.swift */,
 				E10003 /* Theme */,
 				E10004 /* Models */,
 				E10005 /* Utilities */,
@@ -85,7 +85,7 @@
 				E10007 /* Views */,
 				B10021 /* Assets.xcassets */,
 			);
-			path = SRMExamPlanner;
+			path = Studily;
 			sourceTree = "<group>";
 		};
 		E10003 /* Theme */ = {
@@ -161,7 +161,7 @@
 		E10010 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C10001 /* SRMExamPlanner.app */,
+				C10001 /* Studily.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -193,7 +193,7 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		F10001 /* SRMExamPlanner */ = {
+		F10001 /* Studily */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = G10003;
 			buildPhases = (
@@ -205,9 +205,9 @@
 			);
 			dependencies = (
 			);
-			name = SRMExamPlanner;
-			productName = SRMExamPlanner;
-			productReference = C10001 /* SRMExamPlanner.app */;
+			name = Studily;
+			productName = Studily;
+			productReference = C10001 /* Studily.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -238,7 +238,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				F10001 /* SRMExamPlanner */,
+				F10001 /* Studily */,
 			);
 		};
 /* End PBXProject section */
@@ -259,7 +259,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A10001 /* SRMExamPlannerApp.swift in Sources */,
+				A10001 /* StudilyApp.swift in Sources */,
 				A10002 /* AppTheme.swift in Sources */,
 				A10003 /* DateHelper.swift in Sources */,
 				A10004 /* HabitStore.swift in Sources */,
@@ -414,7 +414,7 @@
 				DEVELOPMENT_ASSET_PATHS = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = "SRM Planner";
+				INFOPLIST_KEY_CFBundleDisplayName = "Studily";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -425,7 +425,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.srmist.examplanner;
+				PRODUCT_BUNDLE_IDENTIFIER = com.srmist.studily;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -445,7 +445,7 @@
 				DEVELOPMENT_ASSET_PATHS = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = "SRM Planner";
+				INFOPLIST_KEY_CFBundleDisplayName = "Studily";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -456,7 +456,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.srmist.examplanner;
+				PRODUCT_BUNDLE_IDENTIFIER = com.srmist.studily;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -469,7 +469,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		G10001 /* Build configuration list for PBXProject "SRMExamPlanner" */ = {
+		G10001 /* Build configuration list for PBXProject "Studily" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				G10002 /* Debug */,
@@ -478,7 +478,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		G10003 /* Build configuration list for PBXNativeTarget "SRMExamPlanner" */ = {
+		G10003 /* Build configuration list for PBXNativeTarget "Studily" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				G10005 /* Debug */,
