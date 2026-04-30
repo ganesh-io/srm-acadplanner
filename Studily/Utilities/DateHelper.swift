@@ -1,11 +1,10 @@
 import Foundation
 
 enum DateHelper {
-    // MARK: - Exam Date Configuration
+    // MARK: - Dynamic Exam Date (reads from UserDefaults)
     
-    /// The first exam date — May 24, 2026
-    static var examDate: Date {
-        date(year: 2026, month: 5, day: 24)
+    static var examDate: Date? {
+        UserDefaults.standard.object(forKey: "examDate") as? Date
     }
     
     /// Semester start date for progress calculation
@@ -26,16 +25,19 @@ enum DateHelper {
     
     // MARK: - Countdown Calculations
     
-    static var daysUntilExam: Int {
+    static var daysUntilExam: Int? {
+        guard let exam = examDate else { return nil }
         let calendar = Calendar.current
         let now = calendar.startOfDay(for: Date())
-        let exam = calendar.startOfDay(for: examDate)
-        return max(0, calendar.dateComponents([.day], from: now, to: exam).day ?? 0)
+        let examDay = calendar.startOfDay(for: exam)
+        return max(0, calendar.dateComponents([.day], from: now, to: examDay).day ?? 0)
     }
     
-    static var countdown: (days: Int, hours: Int, minutes: Int, seconds: Int) {
+    static var countdown: (days: Int, hours: Int, minutes: Int, seconds: Int)? {
+        guard let exam = examDate else { return nil }
         let now = Date()
-        let components = Calendar.current.dateComponents([.day, .hour, .minute, .second], from: now, to: examDate)
+        guard exam > now else { return (0, 0, 0, 0) }
+        let components = Calendar.current.dateComponents([.day, .hour, .minute, .second], from: now, to: exam)
         return (
             max(0, components.day ?? 0),
             max(0, components.hour ?? 0),
@@ -45,17 +47,19 @@ enum DateHelper {
     }
     
     /// How far through the semester we are (0.0 to 1.0)
-    static var semesterProgress: Double {
+    static var semesterProgress: Double? {
+        guard let exam = examDate else { return nil }
         let now = Date()
-        let totalInterval = examDate.timeIntervalSince(semesterStart)
+        let totalInterval = exam.timeIntervalSince(semesterStart)
         let elapsedInterval = now.timeIntervalSince(semesterStart)
         guard totalInterval > 0 else { return 1.0 }
         return min(1.0, max(0.0, elapsedInterval / totalInterval))
     }
     
     /// Weeks remaining until first exam
-    static var weeksRemaining: Int {
-        return max(0, daysUntilExam / 7)
+    static var weeksRemaining: Int? {
+        guard let days = daysUntilExam else { return nil }
+        return max(0, days / 7)
     }
     
     // MARK: - Utility

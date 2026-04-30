@@ -1,98 +1,98 @@
-# 🎓 Studily
+# ✦ Studily
 
 A stunning, premium iOS app built with **SwiftUI** to help SRM University students plan and track their exam preparation.
 
-<div align="center">
-  <img src="docs/home_mockup.png" width="250" alt="Home Screen Dashboard"/>
-  <img src="docs/planner_mockup.png" width="250" alt="Planner Timeline Screen"/>
-  <img src="docs/habits_mockup.png" width="250" alt="Habit Progress Screen"/>
-</div>
+<p>
+  <img src="docs/screen_home.png" width="30%" />
+  <img src="docs/screen_schedule.png" width="30%" />
+  <img src="docs/screen_habits.png" width="30%" />
+</p>
+
+---
 
 ## ✨ Features
 
-### 📱 5-Tab Navigation
-- **Home** — Dashboard with live exam countdown, quick stats, upcoming exams
-- **Subjects** — Track progress across all 6 subjects with animated progress bars
-- **Planner** — Daily study schedule with timeline view and weekly calendar strip
-- **Habits** — Daily habit tracker with animated circular progress ring
-- **Profile** — Settings, academic info, and app preferences
-
-### 🎨 Design Highlights
-- **Dark glassmorphism** UI with ultra-thin material blur
-- **Custom floating tab bar** with animated selection indicator
-- **Live countdown timer** to exam day (May 24, 2026)
-- **Animated progress bars** and **circular progress rings**
-- **Spring animations** on all card entrances
-- **Adaptive layout** for all iPhone sizes (SE to Pro Max)
-
-### 💾 Persistence
-- Habit completion states persist via **UserDefaults**
-- Daily auto-reset of habits at midnight
-
-## 🛠 Tech Stack
-
-| Technology | Purpose |
+| Tab | Description |
 |---|---|
-| SwiftUI | UI Framework |
-| Combine | Reactive state management |
-| UserDefaults | Local persistence |
-| SF Symbols | Iconography |
-| @EnvironmentObject | Shared state |
+| **Home** | Live exam countdown timer, daily habit progress bar, upcoming exam cards |
+| **Subjects** | Editable subject list with progress bars, add/delete subjects, chapter tracking |
+| **Planner** | Weekly exam schedule with color-coded subject blocks |
+| **Habits** | Daily study habit checklist with streak tracking and animated toggles |
+| **Profile** | Set custom exam date via DatePicker, toggle daily 7PM study reminder, view stats |
+
+## 🏗️ Tech Stack
+
+| | |
+|---|---|
+| **Framework** | SwiftUI (100% native) |
+| **State** | Combine + `@ObservableObject` |
+| **Persistence** | UserDefaults (JSON encoded) |
+| **Icons** | SF Symbols |
+| **Notifications** | UNUserNotificationCenter |
+| **Min Target** | iOS 16.0 |
+| **Dependencies** | Zero — no third-party packages |
 
 ## 📂 Project Structure
 
 ```
 Studily/
-├── StudilyApp.swift          # App entry point
-├── Theme/
-│   └── AppTheme.swift               # Design system (colors, gradients, spacing)
+├── StudilyApp.swift              ← Entry point + notification setup
+├── Store/
+│   └── HabitStore.swift          ← Central ObservableObject store
 ├── Models/
-│   ├── Exam.swift                   # Exam data model
-│   ├── Subject.swift                # Subject data model
-│   └── Habit.swift                  # Habit data model (Codable)
-├── Utilities/
-│   ├── DateHelper.swift             # Date calculations & countdown
-│   └── HabitStore.swift             # ObservableObject persistence layer
+│   ├── Habit.swift               ← Daily study habits
+│   ├── Subject.swift             ← Codable, editable subjects
+│   └── Exam.swift                ← Exam schedule data
 ├── Components/
-│   ├── GlassCard.swift              # Reusable glassmorphic card
-│   ├── CircularProgressRing.swift   # Animated circular progress
-│   ├── AnimatedProgressBar.swift    # Animated linear progress
-│   ├── ExamCountdownCard.swift      # Live countdown component
-│   ├── ExamCard.swift               # Individual exam card
-│   └── CustomTabBar.swift           # Floating tab bar with blur
+│   ├── CustomTabBar.swift        ← Floating glassmorphism tab bar
+│   ├── ExamCountdownCard.swift   ← Dynamic countdown (reads from store)
+│   ├── ExamCard.swift            ← Individual exam row
+│   ├── GlassCard.swift           ← Reusable glass container
+│   ├── CircularProgressRing.swift
+│   └── AnimatedProgressBar.swift
+├── Theme/
+│   └── AppTheme.swift            ← Colors, gradients, spacing
+├── Utilities/
+│   ├── DateHelper.swift          ← Dynamic date calculations
+│   └── NotificationHelper.swift  ← Push notification scheduling
 └── Views/
-    ├── MainTabView.swift            # Tab container
+    ├── MainTabView.swift
     ├── Home/
-    │   ├── HomeView.swift           # Home dashboard
-    │   └── ProfileSheetView.swift   # Profile bottom sheet
     ├── Subjects/
-    │   └── SubjectsView.swift       # Subject progress list
     ├── Planner/
-    │   └── PlannerView.swift        # Study planner + timeline
     ├── Habits/
-    │   └── HabitsView.swift         # Daily habit tracker
     └── Profile/
-        └── ProfileView.swift        # Settings & profile
 ```
 
 ## 🚀 Getting Started
 
 ### Prerequisites
-- **Xcode 15+** (macOS Sonoma or later recommended)
-- **iOS 16+** deployment target
+- Xcode 15+ (macOS Sonoma or later)
+- iOS 16.0+ device or simulator
 
-### Setup
-1. Clone the repository
-2. Open Xcode → **File → New → Project → iOS → App**
-3. Set Product Name to `Studily`
-4. Select **SwiftUI** for Interface, **Swift** for Language
-5. Replace the generated files with the source files from this repo
-6. Build and run on simulator or device (⌘+R)
+### Run It
+
+```bash
+git clone https://github.com/ganesh-io/Studily.git
+open Studily.xcodeproj
+```
+
+Press `Cmd + R` to build and run.
 
 ## 📋 Requirements
-- iOS 16.0+
-- Xcode 15.0+
-- Swift 5.9+
+
+| | |
+|---|---|
+| iOS | 16.0+ |
+| Xcode | 15+ |
+| Swift | 5.9+ |
 
 ## 📄 License
-This project is licensed under the [MIT License](LICENSE).
+
+This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
+
+---
+
+<div align="center">
+<sub>Made for SRM Students</sub>
+</div>

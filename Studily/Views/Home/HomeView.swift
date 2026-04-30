@@ -10,19 +10,11 @@ struct HomeView: View {
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack(spacing: 20) {
-                // Header
                 headerSection
-                
-                // Countdown
                 ExamCountdownCard()
-                
-                // Quick Stats
+                    .environmentObject(habitStore)
                 quickStatsSection
-                
-                // Upcoming Exams
                 upcomingExamsSection
-                
-                // Today's Habits Preview
                 habitsPreviewSection
             }
             .padding(.horizontal, AppTheme.paddingMedium)
@@ -49,7 +41,6 @@ struct HomeView: View {
             
             Spacer()
             
-            // Avatar button → opens profile sheet
             Button {
                 showProfile = true
             } label: {
@@ -75,13 +66,13 @@ struct HomeView: View {
         HStack(spacing: 12) {
             StatCard(
                 icon: "calendar.badge.clock",
-                value: "\(DateHelper.daysUntilExam)",
+                value: DateHelper.daysUntilExam.map { "\($0)" } ?? "—",
                 label: "Days Left",
                 gradient: AppTheme.accentGradient
             )
             StatCard(
                 icon: "book.closed.fill",
-                value: "6",
+                value: "\(habitStore.subjects.count)",
                 label: "Subjects",
                 gradient: AppTheme.primaryGradient
             )

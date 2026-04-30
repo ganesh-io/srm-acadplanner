@@ -1,66 +1,88 @@
 import SwiftUI
 
 struct ExamCountdownCard: View {
-    @State private var countdown = DateHelper.countdown
+    @EnvironmentObject var habitStore: HabitStore
+    @State private var countdown: (days: Int, hours: Int, minutes: Int, seconds: Int)? = nil
     @State private var appearAnimation = false
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     var body: some View {
         GlassCard {
-            VStack(spacing: 20) {
-                HStack {
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text("EXAM COUNTDOWN")
-                            .font(.caption)
-                            .fontWeight(.bold)
-                            .tracking(2)
-                            .foregroundColor(AppTheme.textTertiary)
-                        Text("May 24, 2026")
-                            .font(.title3)
-                            .fontWeight(.bold)
-                            .foregroundColor(AppTheme.textPrimary)
-                    }
-                    Spacer()
-                    Image(systemName: "flame.fill")
-                        .font(.title2)
-                        .foregroundStyle(AppTheme.accentGradient)
-                        .scaleEffect(appearAnimation ? 1.0 : 0.5)
-                        .opacity(appearAnimation ? 1.0 : 0)
-                }
-                
-                // Countdown units
-                HStack(spacing: 0) {
-                    CountdownUnit(value: countdown.days, label: "DAYS",
-                                  gradient: AppTheme.primaryGradient)
-                    CountdownDivider()
-                    CountdownUnit(value: countdown.hours, label: "HRS",
-                                  gradient: AppTheme.coolGradient)
-                    CountdownDivider()
-                    CountdownUnit(value: countdown.minutes, label: "MIN",
-                                  gradient: AppTheme.warmGradient)
-                    CountdownDivider()
-                    CountdownUnit(value: countdown.seconds, label: "SEC",
-                                  gradient: AppTheme.accentGradient)
-                }
-                
-                // Semester progress bar
-                VStack(spacing: 8) {
+            if let examDate = habitStore.examDate, let cd = countdown {
+                // Has exam date set — show countdown
+                VStack(spacing: 20) {
                     HStack {
-                        Text("Semester Progress")
-                            .font(.caption)
-                            .foregroundColor(AppTheme.textTertiary)
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text("EXAM COUNTDOWN")
+                                .font(.caption)
+                                .fontWeight(.bold)
+                                .tracking(2)
+                                .foregroundColor(AppTheme.textTertiary)
+                            Text(DateHelper.formatShortDate(examDate))
+                                .font(.title3)
+                                .fontWeight(.bold)
+                                .foregroundColor(AppTheme.textPrimary)
+                        }
                         Spacer()
-                        Text("\(Int(DateHelper.semesterProgress * 100))%")
-                            .font(.caption)
-                            .fontWeight(.bold)
-                            .foregroundStyle(AppTheme.primaryGradient)
+                        Image(systemName: "flame.fill")
+                            .font(.title2)
+                            .foregroundStyle(AppTheme.accentGradient)
+                            .scaleEffect(appearAnimation ? 1.0 : 0.5)
+                            .opacity(appearAnimation ? 1.0 : 0)
                     }
-                    AnimatedProgressBar(
-                        progress: DateHelper.semesterProgress,
-                        height: 6,
-                        gradient: AppTheme.primaryGradient
-                    )
+                    
+                    // Countdown units
+                    HStack(spacing: 0) {
+                        CountdownUnit(value: cd.days, label: "DAYS",
+                                      gradient: AppTheme.primaryGradient)
+                        CountdownDivider()
+                        CountdownUnit(value: cd.hours, label: "HRS",
+                                      gradient: AppTheme.coolGradient)
+                        CountdownDivider()
+                        CountdownUnit(value: cd.minutes, label: "MIN",
+                                      gradient: AppTheme.warmGradient)
+                        CountdownDivider()
+                        CountdownUnit(value: cd.seconds, label: "SEC",
+                                      gradient: AppTheme.accentGradient)
+                    }
+                    
+                    // Semester progress bar
+                    if let progress = DateHelper.semesterProgress {
+                        VStack(spacing: 8) {
+                            HStack {
+                                Text("Semester Progress")
+                                    .font(.caption)
+                                    .foregroundColor(AppTheme.textTertiary)
+                                Spacer()
+                                Text("\(Int(progress * 100))%")
+                                    .font(.caption)
+                                    .fontWeight(.bold)
+                                    .foregroundStyle(AppTheme.primaryGradient)
+                            }
+                            AnimatedProgressBar(
+                                progress: progress,
+                                height: 6,
+                                gradient: AppTheme.primaryGradient
+                            )
+                        }
+                    }
                 }
+            } else {
+                // No exam date set — show prompt
+                VStack(spacing: 14) {
+                    Image(systemName: "calendar.badge.plus")
+                        .font(.system(size: 36))
+                        .foregroundStyle(AppTheme.primaryGradient)
+                    Text("Set Your Exam Date")
+                        .font(.headline)
+                        .fontWeight(.bold)
+                        .foregroundColor(AppTheme.textPrimary)
+                    Text("Go to Profile → Settings to set your exam date and see the countdown here.")
+                        .font(.caption)
+                        .foregroundColor(AppTheme.textSecondary)
+                        .multilineTextAlignment(.center)
+                }
+                .padding(.vertical, 8)
             }
         }
         .onReceive(timer) { _ in
@@ -69,6 +91,7 @@ struct ExamCountdownCard: View {
             }
         }
         .onAppear {
+            countdown = DateHelper.countdown
             withAnimation(.spring(response: 0.8, dampingFraction: 0.6)) {
                 appearAnimation = true
             }

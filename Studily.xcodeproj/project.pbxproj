@@ -11,6 +11,7 @@
 		A10002 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10002; };
 		A10003 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10003; };
 		A10004 /* HabitStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10004; };
+		A10022 /* NotificationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10022; };
 		A10005 /* Exam.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10005; };
 		A10006 /* Subject.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10006; };
 		A10007 /* Habit.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10007; };
@@ -36,6 +37,7 @@
 		B10002 /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
 		B10003 /* DateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
 		B10004 /* HabitStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitStore.swift; sourceTree = "<group>"; };
+		B10022 /* NotificationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationHelper.swift; sourceTree = "<group>"; };
 		B10005 /* Exam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exam.swift; sourceTree = "<group>"; };
 		B10006 /* Subject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subject.swift; sourceTree = "<group>"; };
 		B10007 /* Habit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Habit.swift; sourceTree = "<group>"; };
@@ -80,6 +82,7 @@
 				B10001 /* StudilyApp.swift */,
 				E10003 /* Theme */,
 				E10004 /* Models */,
+				E10014 /* Store */,
 				E10005 /* Utilities */,
 				E10006 /* Components */,
 				E10007 /* Views */,
@@ -106,11 +109,19 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		E10014 /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				B10004 /* HabitStore.swift */,
+			);
+			path = Store;
+			sourceTree = "<group>";
+		};
 		E10005 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
 				B10003 /* DateHelper.swift */,
-				B10004 /* HabitStore.swift */,
+				B10022 /* NotificationHelper.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -279,6 +290,7 @@
 				A10018 /* PlannerView.swift in Sources */,
 				A10019 /* HabitsView.swift in Sources */,
 				A10020 /* ProfileView.swift in Sources */,
+				A10022 /* NotificationHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

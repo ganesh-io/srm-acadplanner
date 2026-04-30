@@ -2,9 +2,7 @@ import SwiftUI
 
 struct ProfileView: View {
     @EnvironmentObject var habitStore: HabitStore
-    @State private var notificationsEnabled = true
-    @State private var darkModeEnabled = true
-    @State private var studyReminders = true
+    @State private var showExamDatePicker = false
     
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
@@ -57,12 +55,91 @@ struct ProfileView: View {
                 
                 // Quick Stats
                 HStack(spacing: 12) {
-                    ProfileStatBadge(value: "\(DateHelper.daysUntilExam)", label: "Days Left",
-                                     icon: "calendar", gradient: AppTheme.accentGradient)
+                    ProfileStatBadge(
+                        value: habitStore.examDate != nil ? "\(DateHelper.daysUntilExam ?? 0)" : "—",
+                        label: "Days Left",
+                        icon: "calendar", gradient: AppTheme.accentGradient
+                    )
                     ProfileStatBadge(value: "8.4", label: "CGPA",
                                      icon: "star.fill", gradient: AppTheme.warmGradient)
                     ProfileStatBadge(value: "\(habitStore.completedCount)", label: "Habits Done",
                                      icon: "checkmark.circle", gradient: AppTheme.successGradient)
+                }
+                
+                // Exam Date Setting
+                VStack(spacing: 12) {
+                    SectionHeader(title: "Exam")
+                    
+                    GlassCard(padding: 14) {
+                        HStack(spacing: 14) {
+                            ZStack {
+                                RoundedRectangle(cornerRadius: 10)
+                                    .fill(Color(hex: "F43F5E").opacity(0.15))
+                                    .frame(width: 38, height: 38)
+                                Image(systemName: "calendar.badge.clock")
+                                    .font(.system(size: 15, weight: .semibold))
+                                    .foregroundColor(Color(hex: "F43F5E"))
+                            }
+                            
+                            VStack(alignment: .leading, spacing: 2) {
+                                Text("Exam Date")
+                                    .font(.subheadline)
+                                    .fontWeight(.medium)
+                                    .foregroundColor(AppTheme.textPrimary)
+                                if let date = habitStore.examDate {
+                                    Text(DateHelper.formatFullDate(date))
+                                        .font(.caption)
+                                        .foregroundColor(AppTheme.textSecondary)
+                                } else {
+                                    Text("Tap to set")
+                                        .font(.caption)
+                                        .foregroundColor(AppTheme.textTertiary)
+                                }
+                            }
+                            
+                            Spacer()
+                            
+                            Button {
+                                showExamDatePicker.toggle()
+                            } label: {
+                                Image(systemName: "pencil.circle.fill")
+                                    .font(.title3)
+                                    .foregroundStyle(AppTheme.primaryGradient)
+                            }
+                        }
+                    }
+                    
+                    if showExamDatePicker {
+                        GlassCard(padding: 14) {
+                            DatePicker(
+                                "Select Date",
+                                selection: Binding(
+                                    get: { habitStore.examDate ?? Date() },
+                                    set: { habitStore.setExamDate($0) }
+                                ),
+                                in: Date()...,
+                                displayedComponents: .date
+                            )
+                            .datePickerStyle(.graphical)
+                            .tint(AppTheme.primary)
+                            .colorScheme(.dark)
+                        }
+                        .transition(.opacity.combined(with: .scale(scale: 0.95)))
+                    }
+                }
+                
+                // Notification Preferences
+                VStack(spacing: 12) {
+                    SectionHeader(title: "Notifications")
+                    
+                    ToggleSettingRow(
+                        icon: "clock.fill", color: "F97316",
+                        title: "Daily 7 PM Reminder",
+                        isOn: Binding(
+                            get: { habitStore.dailyReminderEnabled },
+                            set: { habitStore.setDailyReminder($0) }
+                        )
+                    )
                 }
                 
                 // Settings Sections
@@ -71,15 +148,11 @@ struct ProfileView: View {
                     
                     ToggleSettingRow(
                         icon: "bell.fill", color: "8B5CF6",
-                        title: "Notifications", isOn: $notificationsEnabled
+                        title: "Notifications", isOn: .constant(true)
                     )
                     ToggleSettingRow(
                         icon: "moon.fill", color: "6366F1",
-                        title: "Dark Mode", isOn: $darkModeEnabled
-                    )
-                    ToggleSettingRow(
-                        icon: "clock.fill", color: "F97316",
-                        title: "Study Reminders", isOn: $studyReminders
+                        title: "Dark Mode", isOn: .constant(true)
                     )
                 }
                 
@@ -119,6 +192,7 @@ struct ProfileView: View {
             .padding(.bottom, 100)
         }
         .background(AppTheme.background)
+        .animation(.spring(response: 0.4, dampingFraction: 0.8), value: showExamDatePicker)
     }
 }
 
